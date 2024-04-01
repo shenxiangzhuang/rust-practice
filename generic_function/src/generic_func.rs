@@ -73,4 +73,5 @@ pub fn run_generic_example() {
     debug_assert_eq!(min_by_ref(&cit11, &cit22), &cit22);
     debug_assert_eq!(min_by_ref(&cit22, &cit33), &cit22);
     debug_assert_eq!(min_by_ref(&cit11, &cit33), &cit33);
+    println!("Finished!")
 }
