@@ -206,6 +206,34 @@
     println!("Hello, world!");
 }</code></pre></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="question--answer"><a class="header" href="#question--answer">Question &amp; Answer</a></h1>
+<h2 id="string-concat"><a class="header" href="#string-concat">String Concat</a></h2>
+<h2 id="type-casting"><a class="header" href="#type-casting">Type casting</a></h2>
+<p>如何在Rust中实现类型转换？
+首先，Rust中没有隐式的类型转换，如下面的用法就会报错:</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>let x_usize: usize = 42;
+let x_i64: i64 = x_usize;
+
+println!("{}, {}", x_usize, x_i64);
+<span class="boring">}</span></code></pre></pre>
+<p>但是我们可以通过<code>as</code>关键字来显式地进行类型转换<sup class="footnote-reference"><a href="#1">1</a></sup>.</p>
+<blockquote>
+<p>A type cast expression is denoted with the binary operator <code>as</code><sup class="footnote-reference"><a href="#2">2</a></sup>.</p>
+</blockquote>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>let x_usize: usize = 42;
+let x_i64: i64 = x_usize as i64;
+
+println!("{}, {}", x_usize, x_i64);
+<span class="boring">}</span></code></pre></pre>
+<div class="footnote-definition" id="1"><sup class="footnote-definition-label">1</sup>
+<p><a href="https://doc.rust-lang.org/rust-by-example/types/cast.html">https://doc.rust-lang.org/rust-by-example/types/cast.html</a></p>
+</div>
+<div class="footnote-definition" id="2"><sup class="footnote-definition-label">2</sup>
+<p><a href="https://doc.rust-lang.org/reference/expressions/operator-expr.html#type-cast-expressions">https://doc.rust-lang.org/reference/expressions/operator-expr.html#type-cast-expressions</a></p>
+</div>
 
                     </main>
 
