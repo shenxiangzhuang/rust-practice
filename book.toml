@@ -5,7 +5,12 @@ multilingual = false
 src = "src"
 title = "Rust Practice"
 
+[output.html]
+mathjax-support = true
+git-repository-url = "https://github.com/shenxiangzhuang/rust-practice"
+
 
 [output.html.playground]
 runnable = true
 editable = true
+line-numbers = true
