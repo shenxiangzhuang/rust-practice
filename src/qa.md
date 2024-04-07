@@ -3,7 +3,7 @@
 
 ## Playground
 
-An default playground:
+A default playground:
 ```rust
 println!("Hello, world!");
 ```
