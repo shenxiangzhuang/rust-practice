@@ -4,7 +4,11 @@
 
 # Usage
 - [Cargo](usage/cargo.md)
-- [Playground](usage/playground.md)
+- [String](usage/string.md)
 
 # QA
 - [QA](./qa.md)
+
+# Playground
+- [Playground](usage/playground.md)
+
