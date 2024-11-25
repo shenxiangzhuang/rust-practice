@@ -12,6 +12,13 @@ jobs:
     concurrency:
       group: ${{ github.workflow }}-${{ github.ref }}
     steps:
+      - name: Setup aquascope
+        run: |
+          cargo install mdbook-aquascope --locked --version 0.3.4
+          rustup toolchain install nightly-2023-08-25 -c rust-src rustc-dev llvm-tools-preview miri
+          cargo +nightly-2023-08-25 install aquascope_front --git https://github.com/cognitive-engineering-lab/aquascope --tag v0.3.4 --locked
+          cargo +nightly-2023-08-25 miri setup
+
       - uses: actions/checkout@v2
 
       - name: Setup mdBook
