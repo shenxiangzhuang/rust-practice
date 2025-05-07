@@ -25,19 +25,20 @@
         <link rel="stylesheet" href="fonts/fonts.css">
 
         <!-- Highlight.js Stylesheets -->
-        <link rel="stylesheet" href="highlight.css">
-        <link rel="stylesheet" href="tomorrow-night.css">
-        <link rel="stylesheet" href="ayu-highlight.css">
+        <link rel="stylesheet" id="highlight-css" href="highlight.css">
+        <link rel="stylesheet" id="tomorrow-night-css" href="tomorrow-night.css">
+        <link rel="stylesheet" id="ayu-highlight-css" href="ayu-highlight.css">
 
         <!-- Custom theme stylesheets -->
 
         <!-- MathJax -->
         <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
-        <!-- Provide site root to javascript -->
+        <!-- Provide site root and default themes to javascript -->
         <script>
-            var path_to_root = "";
-            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+            const path_to_root = "";
+            const default_light_theme = "light";
+            const default_dark_theme = "navy";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="toc.js"></script>
@@ -47,8 +48,8 @@
         <!-- Work around some values being stored in localStorage wrapped in quotes -->
         <script>
             try {
-                var theme = localStorage.getItem('mdbook-theme');
-                var sidebar = localStorage.getItem('mdbook-sidebar');
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
 
                 if (theme.startsWith('"') && theme.endsWith('"')) {
                     localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
@@ -62,7 +63,8 @@
 
         <!-- Set the theme before any content is loaded, prevents flash -->
         <script>
-            var theme;
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
             try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
             if (theme === null || theme === undefined) { theme = default_theme; }
             const html = document.documentElement;
@@ -75,8 +77,8 @@
 
         <!-- Hide / unhide sidebar before it is displayed -->
         <script>
-            var sidebar = null;
-            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
             if (document.body.clientWidth >= 1080) {
                 try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
                 sidebar = sidebar || 'visible';
@@ -112,6 +114,7 @@
                             <i class="fa fa-paint-brush"></i>
                         </button>
                         <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="default_theme">Auto</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
@@ -198,6 +201,10 @@ println!("Again, the third element is {}", *num);
 v.push(4);
 }
 </code></pre>
+<h2 id="math-equation"><a class="header" href="#math-equation">Math equation</a></h2>
+<p>$$
+\text{Attention} = \text{softmax}(\frac{QK^T}{\sqrt{d_k}} + M)V
+$$</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="question--answer"><a class="header" href="#question--answer">Question &amp; Answer</a></h1>
 <h2 id="string-concat"><a class="header" href="#string-concat">String Concat</a></h2>
 <h2 id="type-casting"><a class="header" href="#type-casting">Type casting</a></h2>
@@ -210,9 +217,9 @@ let x_i64: i64 = x_usize;
 
 println!("{}, {}", x_usize, x_i64);
 <span class="boring">}</span></code></pre></pre>
-<p>但是我们可以通过<code>as</code>关键字来显式地进行类型转换<sup class="footnote-reference"><a href="#1">1</a></sup>.</p>
+<p>但是我们可以通过<code>as</code>关键字来显式地进行类型转换<sup class="footnote-reference" id="fr-1-1"><a href="#footnote-1">1</a></sup>.</p>
 <blockquote>
-<p>A type cast expression is denoted with the binary operator <code>as</code><sup class="footnote-reference"><a href="#2">2</a></sup>.</p>
+<p>A type cast expression is denoted with the binary operator <code>as</code><sup class="footnote-reference" id="fr-2-1"><a href="#footnote-2">2</a></sup>.</p>
 </blockquote>
 <pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
@@ -221,13 +228,14 @@ let x_i64: i64 = x_usize as i64;
 
 println!("{}, {}", x_usize, x_i64);
 <span class="boring">}</span></code></pre></pre>
-<div class="footnote-definition" id="1"><sup class="footnote-definition-label">1</sup>
-<p><a href="https://doc.rust-lang.org/rust-by-example/types/cast.html">https://doc.rust-lang.org/rust-by-example/types/cast.html</a></p>
-</div>
-<div class="footnote-definition" id="2"><sup class="footnote-definition-label">2</sup>
-<p><a href="https://doc.rust-lang.org/reference/expressions/operator-expr.html#type-cast-expressions">https://doc.rust-lang.org/reference/expressions/operator-expr.html#type-cast-expressions</a></p>
-</div>
-
+<hr>
+<ol class="footnote-definition"><li id="footnote-1">
+<p><a href="https://doc.rust-lang.org/rust-by-example/types/cast.html">https://doc.rust-lang.org/rust-by-example/types/cast.html</a> <a href="#fr-1-1">↩</a></p>
+</li>
+<li id="footnote-2">
+<p><a href="https://doc.rust-lang.org/reference/expressions/operator-expr.html#type-cast-expressions">https://doc.rust-lang.org/reference/expressions/operator-expr.html#type-cast-expressions</a> <a href="#fr-2-1">↩</a></p>
+</li>
+</ol>
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
