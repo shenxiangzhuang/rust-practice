@@ -13,6 +13,8 @@ jobs:
       group: ${{ github.workflow }}-${{ github.ref }}
     steps:
       - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+      - run: cargo install mdbook-katex
       - name: Setup mdBook
         uses: peaceiris/actions-mdbook@v2
         with:
