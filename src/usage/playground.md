@@ -33,3 +33,9 @@ println!("Again, the third element is {}", *num);
 v.push(4);
 }
 ```
+
+## Math equation
+
+$$
+  \text{Attention} = \text{softmax}(\frac{QK^T}{\sqrt{d_k}} + M)V
+$$
