@@ -16,3 +16,6 @@ editable = true
 line-numbers = true
 
 [preprocessor.aquascope]
+
+[preprocessor.katex]
+after = ["links"]
